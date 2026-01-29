@@ -93,7 +93,6 @@ function App() {
             <FlowRenderer 
               step={currentStep} 
               onNext={handleNext} 
-              onPrevious={handlePrevious}
             />
             
             <div className="debug-info">
