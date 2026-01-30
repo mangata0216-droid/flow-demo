@@ -708,6 +708,11 @@ textarea.fill-input {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
+/* 去掉Ad步骤背景图上面的遮罩 */
+.step-container.step-container--has-bg.ad-landing-page::before {
+  display: none;
+}
+
 .step-container.step-container--has-bg.ad-landing-page .brand-name {
   color: rgba(255, 255, 255, 0.95);
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
@@ -744,7 +749,19 @@ textarea.fill-input {
 }
 
 .step-container.step-container--has-bg.ad-landing-page .ad-footer {
-  padding-bottom: env(safe-area-inset-bottom, 40px);
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+/* Ad 步骤按钮放在红框位置并下移100px */
+.ad-footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  margin-top: auto;
+  margin-bottom: 20vh;
+  height: 100px;
 }
 
 /* Ad 全屏图片容器样式 */

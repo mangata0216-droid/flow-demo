@@ -23,10 +23,10 @@ const AdStep = ({ step }) => {
 
   return (
     <div
-      className={`step-container ad-landing-page ${step?.backgroundImage ? 'step-container--has-bg' : ''}`}
+      className={`step-container ad-landing-page ${step?.content?.backgroundImage ? 'step-container--has-bg' : ''}`}
       style={
-        step?.backgroundImage
-          ? { backgroundImage: `url(${step.backgroundImage})` }
+        step?.content?.backgroundImage
+          ? { backgroundImage: `url(${step.content.backgroundImage})` }
           : undefined
       }
     >

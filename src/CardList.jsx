@@ -6,9 +6,9 @@ const CardList = ({ onCardClick }) => {
   const cards = [
     {
       id: 'flow1',
-      title: '拯救受伤飞行员',
-      description: '展开救援任务，学习急救知识',
-      image: '/image/card-adventure.png',
+      title: '瓦拉飞船上的新朋友',
+      description: '快来看看你能交几个好朋友？',
+      image: '/image/card1.png',
       flowName: 'rescue'
     },
     {
@@ -20,10 +20,10 @@ const CardList = ({ onCardClick }) => {
     },
     {
       id: 'flow3',
-      title: '科学实验课堂',
-      description: '动手做实验，学习科学原理',
-      image: '/image/story-intro-step2.jpg',
-      flowName: 'science'
+      title: '野外烹饪挑战',
+      description: '输入食材单词，制作美味的食物',
+      image: '/image/cookinggame.png',
+      flowName: 'cook'
     }
   ];
 

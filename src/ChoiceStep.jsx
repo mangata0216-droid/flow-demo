@@ -24,6 +24,15 @@ const ChoiceStep = ({ step, onNext, onPrevious }) => {
   const [selectedValues, setSelectedValues] = useState(
     step.multiple ? [] : null
   );
+  const [showFeedback, setShowFeedback] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  // 使用 useEffect 初始化状态，确保每次步骤加载时都能正确初始化
+  React.useEffect(() => {
+    setSelectedValues(step.multiple ? [] : null);
+    setShowFeedback(false);
+    setSelectedOption(null);
+  }, [step]);
 
   const handleOptionClick = (option) => {
     if (step.multiple) {
@@ -36,6 +45,8 @@ const ChoiceStep = ({ step, onNext, onPrevious }) => {
       });
     } else {
       setSelectedValues(option.value);
+      setSelectedOption(option);
+      setShowFeedback(true);
     }
   };
 
@@ -69,19 +80,29 @@ const ChoiceStep = ({ step, onNext, onPrevious }) => {
       return;
     }
 
-    // 根据 successNext / failNext 决定跳转
-    const success = isSuccess();
-    const nextStepIndex = success ? step.successNext : step.failNext;
+    // 确定下一步的索引
+    let nextStepIndex;
+    
+    // 检查是否有选项特定的跳转配置
+    if (step.optionNext && typeof step.optionNext === 'object') {
+      // 确保selectedValues是字符串
+      const valueKey = typeof selectedValues === 'string' ? selectedValues : String(selectedValues);
+      // 根据选择的值获取对应的跳转索引
+      nextStepIndex = step.optionNext[valueKey];
+    }
+    
+    // 如果没有选项特定的跳转配置，使用默认的successNext/failNext逻辑
+    if (nextStepIndex === undefined) {
+      const success = isSuccess();
+      nextStepIndex = success ? step.successNext : step.failNext;
+    }
     
     // 将下一步的索引传递给回调
-    onNext?.(
-      {
-        selectedValues,
-        success,
-        nextStepIndex,
-      },
-      step
-    );
+    onNext?.({
+      selectedValues,
+      success: isSuccess(),
+      nextStepIndex,
+    }, step);
   };
 
   const isSelected = (value) => {
@@ -105,6 +126,9 @@ const ChoiceStep = ({ step, onNext, onPrevious }) => {
           <h2 className="step-title">{step.title}</h2>
         )}
         
+        {step.question && (
+          <p className="step-description">{step.question}</p>
+        )}
         {step.description && (
           <p className="step-description">{step.description}</p>
         )}
@@ -123,6 +147,12 @@ const ChoiceStep = ({ step, onNext, onPrevious }) => {
             </button>
           ))}
         </div>
+        
+        {showFeedback && selectedOption && selectedOption.feedback && (
+          <div className="choice-feedback">
+            {selectedOption.feedback}
+          </div>
+        )}
       </div>
 
       <div className="step-actions">

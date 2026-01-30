@@ -129,6 +129,9 @@ const PickReadStep = ({ step, onNext, onPrevious }) => {
           <h2 className="step-title">{step.title}</h2>
         )}
         
+        {step.question && (
+          <p className="step-description">{step.question}</p>
+        )}
         {step.description && (
           <p className="step-description">{step.description}</p>
         )}

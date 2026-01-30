@@ -6,6 +6,7 @@ import FeedbackStep from './FeedbackStep';
 import EndStep from './EndStep';
 import AdStep from './AdStep';
 import PickReadStep from './PickReadStep';
+import CookGameStep from './CookGameStep';
 import './index.css';
 
 /**
@@ -83,6 +84,15 @@ const FlowRenderer = ({ step, onNext, onPrevious }) => {
     case 'pick-read':
       return (
         <PickReadStep
+          step={step}
+          onNext={onNext}
+          onPrevious={onPrevious}
+        />
+      );
+
+    case 'cook-game':
+      return (
+        <CookGameStep
           step={step}
           onNext={onNext}
           onPrevious={onPrevious}

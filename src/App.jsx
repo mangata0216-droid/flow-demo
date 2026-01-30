@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 // 1. 导入你的剧本数据
 import { flow1 } from './flow1.js'; 
 import { flow2 } from './flow2.js'; 
+import { flow3 } from './flow3.js'; 
 // 2. 导入渲染引擎
 import FlowRenderer from './FlowRenderer';
 // 3. 导入卡片列表组件
@@ -37,7 +38,14 @@ function App() {
       // 兼容不同子组件字段：success / isCorrect
       const isCorrect = data?.success ?? data?.isCorrect ?? false;
       const nextIndex = isCorrect ? currentStep.successNext : currentStep.failNext;
-      setCurrentIndex(nextIndex);
+      if (nextIndex !== undefined) {
+        setCurrentIndex(nextIndex);
+      } else {
+        // 如果没有设置successNext和failNext，直接进入下一数组元素
+        if (currentIndex < currentFlow.length - 1) {
+          setCurrentIndex(currentIndex + 1);
+        }
+      }
     } 
     // 逻辑 B: 如果是反馈页 (feedback) 或 普通叙事页 (story)
     else if (currentStep.next !== undefined) {
@@ -68,12 +76,14 @@ function App() {
     // 根据 flowName 切换不同的 flow 数据
     let selectedFlow;
     switch (flowName) {
+      case 'rescue':
+        selectedFlow = flow1;
+        break;
       case 'explore':
         selectedFlow = flow2;
         break;
-      case 'science':
-        // 未来可以添加科学实验的 flow
-        selectedFlow = flow1;
+      case 'cook':
+        selectedFlow = flow3;
         break;
       default:
         selectedFlow = flow1;
