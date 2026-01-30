@@ -15,8 +15,20 @@ const step0_Intro = {
 const step1_Scene = {
   type: 'story',
   title: '抵达现场',
-  content: 'Skylar: 有人受伤了！\nUser: Medic! 扫描受伤的人！\nMedic: 收到，正在扫描...',
+  content: '背景背景背景',
   backgroundImage: '/image/story-intro-step1.png',
+  dialogues: [ // 对话内容
+    {
+      character: 'Skylar',
+      avatar: '/image/skylar-avatar.png',
+      text: '有人受伤了！'
+    },
+    {
+      character: 'User',
+      avatar: '/image/user-avatar.png',
+      text: 'Medic! 扫描受伤的人！'
+    }
+  ]
 };
 
 // 26-35s: 关键选择 (对话选读)

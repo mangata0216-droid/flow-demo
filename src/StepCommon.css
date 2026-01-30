@@ -299,6 +299,114 @@ textarea.fill-input {
   font-size: 14px;
 }
 
+/* 场景描述样式 */
+.scene-description {
+  margin-bottom: 20px;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* 对话容器样式 */
+.dialogue-container {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 角色立绘样式 */
+.character-avatar {
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
+}
+
+.character-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 对话框样式 */
+.dialogue-box {
+  flex: 1;
+  padding: 16px 20px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+/* 角色名称样式 */
+.character-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #40a9ff;
+  margin-bottom: 8px;
+}
+
+/* 对话文本样式 */
+.dialogue-text {
+  font-size: 16px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+
+
+/* 背景图模式下的对话样式 */
+.story-step.story-step--has-bg .scene-description {
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  margin-bottom: 30px;
+}
+
+.story-step.story-step--has-bg .dialogue-box {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+}
+
+.story-step.story-step--has-bg .character-name {
+  color: #40a9ff;
+}
+
+.story-step.story-step--has-bg .dialogue-text {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* 响应式调整 */
+@media (max-width: 480px) {
+  .dialogue-container {
+    gap: 12px;
+    padding: 0 10px;
+  }
+  
+  .character-avatar {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .dialogue-box {
+    padding: 12px 16px;
+  }
+  
+  .character-name {
+    font-size: 12px;
+  }
+  
+  .dialogue-text {
+    font-size: 14px;
+  }
+}
+
 /* Feedback 步骤样式 */
 .feedback-rating {
   margin: 24px 0;
